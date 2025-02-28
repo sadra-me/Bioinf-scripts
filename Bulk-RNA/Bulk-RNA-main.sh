@@ -2,10 +2,10 @@
 
 base_dir="GSE1011"
 srr_file="$HOME/Downloads/command-inputs/SRR_Acc_List.txt"
-adapter="$HOME/Downloads/command-inputs/adapter/"
-reference="$HOME/Downloads/command-inputs/reference-index/"
-GeneBodyCov_ACTB="$HOME/Downloads/command-inputs/genebody/ACTB.bed"
-RNA_GTF="$HOME/Downloads/command-inputs/gtf/reference.gtf"
+adapter="$HOME/Downloads/command-inputs/adapters/TruSeq2-PE.fa"
+reference="$HOME/Downloads/command-inputs/Aligner-index/"
+GeneBodyCov_ACTB="$HOME/Downloads/command-inputs/ACTB/ACTB.bed"
+RNA_GTF="$HOME/Downloads/command-inputs/RNA-GTF/hs1.ncbiRefSeq.gtf"
 Tidy_loc="$HOME/Downloads/command-inputs/scripts/stringtie_expression_matrix.pl"
 thread_numbers="4"
 
