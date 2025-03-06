@@ -1,12 +1,12 @@
 #!/bin/bash
 
-base_dir="GSE31037"
-srr_file="$HOME/Downloads/command-inputs/SRR_Acc_List.txt"
-adapter="$HOME/Downloads/command-inputs/adapters/TruSeq2-PE.fa"
-reference="$HOME/Downloads/command-inputs/Aligner-index/"
-GeneBodyCov_ACTB="$HOME/Downloads/command-inputs/ACTB/ACTB.bed"
-RNA_GTF="$HOME/Downloads/command-inputs/RNA-GTF/hs1.ncbiRefSeq.gtf"
-Tidy_loc="$HOME/Downloads/command-inputs/scripts/stringtie_expression_matrix.pl"
+base_dir="GSE1010"
+srr_file="$HOME/Downloads/command_inputs/SRR_Acc_List.txt"
+adapter="$HOME/Downloads/command_inputs/adapters/TruSeq2-PE.fa"
+reference="$HOME/Downloads/command_inputs/Aligner-index/hg38/genome"
+GeneBodyCov_ACTB="$HOME/Downloads/command_inputs/ACTB/ACTB.bed"
+RNA_GTF="$HOME/Downloads/command_inputs/RNA-GTF/hs1.ncbiRefSeq.gtf"
+Tidy_loc="$HOME/Downloads/command_inputs/tidy/stringtie_expression_matrix.pl"
 thread_numbers="4"
 
 # Check if base directory exists
@@ -32,7 +32,7 @@ check_success() {
 }
 
 # Create necessary directories
-mkdir -p fastq/{trimmed,untrimmed} fastqc/{trimmed,untrimmed} alignment/log QC-results/{untrimmed,RSeQC} expression/StringTie/
+mkdir -p alignment/log QC-results/{untrimmed,RSeQC} expression/StringTie/
 check_success "mkdir"
 
 # Process each SRR accession in the list
@@ -41,11 +41,11 @@ while IFS= read -r line; do
 
 
     # Hisat2 Alignment Loop (Alignment)
-    for i in ./fastq/utrimmed/*_1.fastq.gz; do
+    for i in ./fastq/untrimmed/*_1.fastq.gz; do
         base=$(basename "$i" _1.fastq.gz)
         output="./alignment/${base}.sam"
-	read_1="./fastq/utrimmed/${base}_1.fastq.gz"
-	read_2=".//fastq/utrimmed/${base}_2.fastq.gz"
+	read_1="./fastq/untrimmed/${base}_1.fastq.gz"
+	read_2=".//fastq/untrimmed/${base}_2.fastq.gz"
         if [[ -f "$output" || -f "./alignment/${base}-sorted.bam" ]]; then
             echo "Alignment output already exists for $base. Skipping alignment."
             continue
@@ -69,7 +69,6 @@ while IFS= read -r line; do
         if [[ -f "$output" ]]; then
             echo "${base}-sorted.bam already exists. Skipping sorting."
             rm ./alignment/"${base}.sam"
-            md5sum "${output}" >> ./alignment/bam-sort.md5sum
             continue
         fi
 

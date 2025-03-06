@@ -29,9 +29,7 @@ check_success() {
   fi
 }
 
-# Ensure output directories exist
-mkdir -p ./peaks/blacklisted
-mkdir -p ./bigwig
+mkdir -p "$base_dir"/alignment/{raw/sorted/{flagstat,stat,dedup}},BED/tn5/,peaks,bigwig/}
 
 # BedClip and BigWig Conversion
 for i in ./peaks/blacklisted/*-blacklist-Removed.bdg; do

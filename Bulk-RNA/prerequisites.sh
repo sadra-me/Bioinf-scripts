@@ -22,7 +22,7 @@ if [ -f "./RNA-GTF/hs1.ncbiRefSeq.gtf" ]; then
   echo "RNA GTF file exists; no downloading will be done."
 else
   # Download and extract the RNA GTF file
-  wget "https://hgdownload.soe.ucsc.edu/goldenPath/hs1/bigZips/genes/hs1.ncbiRefSeq.gtf.gz" -O ./RNA-GTF/hs1.ncbiRefSeq.gtf.gz
+  wget -c "https://hgdownload.soe.ucsc.edu/goldenPath/hs1/bigZips/genes/hs1.ncbiRefSeq.gtf.gz" -O ./RNA-GTF/hs1.ncbiRefSeq.gtf.gz
   check_success "wget"
   
   gunzip ./RNA-GTF/hs1.ncbiRefSeq.gtf.gz
@@ -41,7 +41,7 @@ if [ -f "./Aligner-index/genome.1.ht2" ]; then
   echo "Index files exist; no downloading will be done."
 else
   # Download and extract the HISAT2 index files for hg38
-  wget "https://genome-idx.s3.amazonaws.com/hisat/hg38_genome.tar.gz" -O ./Aligner-index/hg38_genome.tar.gz
+  wget -c "https://genome-idx.s3.amazonaws.com/hisat/hg38_genome.tar.gz" -O ./Aligner-index/hg38_genome.tar.gz
   check_success "wget"
   
   tar -xvzf ./Aligner-index/hg38_genome.tar.gz -C ./Aligner-index/
@@ -52,7 +52,7 @@ fi
 if [ -f "./tidy/stringtie_expression_matrix.pl" ]; then
   echo "Tidy script exists; no downloading will be done."
 else
-  wget "https://raw.githubusercontent.com/griffithlab/rnabio.org/master/assets/scripts/stringtie_expression_matrix.pl" -O ./tidy/stringtie_expression_matrix.pl
+  wget -c "https://raw.githubusercontent.com/griffithlab/rnabio.org/master/assets/scripts/stringtie_expression_matrix.pl" -O ./tidy/stringtie_expression_matrix.pl
   check_success "wget"
   
   chmod +x ./tidy/stringtie_expression_matrix.pl
@@ -62,7 +62,7 @@ fi
 if [ -f "./adapters/TruSeq2-PE.fa" ]; then
   echo "Adapters exist; no downloading will be done."
 else
-  wget "https://raw.githubusercontent.com/timflutre/trimmomatic/master/adapters/TruSeq2-PE.fa" -O ./adapters/TruSeq2-PE.fa
+  wget -c "https://raw.githubusercontent.com/timflutre/trimmomatic/master/adapters/TruSeq2-PE.fa" -O ./adapters/TruSeq2-PE.fa
   check_success "wget"
 fi
 
